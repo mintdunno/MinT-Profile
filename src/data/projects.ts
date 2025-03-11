@@ -62,8 +62,8 @@ export const projects: Project[] = [
     ],
     image:
       "https://i.ibb.co/93sLbnKR/477222665-3896728863881935-8280609018506937864-n.jpg",
-    githubUrl: "https://github.com/username/ai-content-generator",
-    liveUrl: "https://ai-content-generator.herokuapp.com",
+    githubUrl: "https://github.com/mintdunno/fitness-tracker",
+    liveUrl: "https://github.com/mintdunno/fitness-tracker",
     featured: true,
     keyProject: true,
   },
@@ -88,8 +88,8 @@ export const projects: Project[] = [
     ],
     image:
       "https://images.unsplash.com/photo-1576678927484-cc907957088c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Zml0bmVzcyUyMGFwcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-    githubUrl: "https://github.com/username/fitness-tracker",
-    liveUrl: "https://fitnesstrack.demo.app",
+    githubUrl: "https://github.com/mintdunno/fitness-tracker",
+    liveUrl: "https://github.com/mintdunno/fitness-tracker",
     featured: true,
     keyProject: false,
   },
@@ -115,7 +115,7 @@ export const projects: Project[] = [
     ],
     image:
       "https://shop-cdn.aidot.com/media/wysiwyg/E_smart_home_app_7849x4181.jpeg",
-    githubUrl: "https://github.com/username/smart-home-control",
+    githubUrl: "https://github.com/mintdunno/smart-home-control",
     featured: true,
     keyProject: true,
   },
@@ -141,8 +141,8 @@ export const projects: Project[] = [
     ],
     image:
       "https://images.unsplash.com/photo-1626379953822-baec19c3accd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dmlydHVhbCUyMHJlYWxpdHl8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
-    githubUrl: "https://github.com/username/vr-education",
-    liveUrl: "https://vr-education-demo.io",
+    githubUrl: "https://github.com/mintdunno/vr-education",
+    liveUrl: "https://github.com/mintdunno/fitness-tracker",
     featured: true,
     keyProject: true,
   },
@@ -168,7 +168,7 @@ export const projects: Project[] = [
     ],
     image:
       "https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJsb2NrY2hhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
-    githubUrl: "https://github.com/username/blockchain-voting",
+    githubUrl: "https://github.com/mintdunno/blockchain-voting",
     featured: false,
     keyProject: true,
   },
