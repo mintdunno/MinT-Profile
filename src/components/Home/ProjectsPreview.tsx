@@ -1,43 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-};
-
-const featuredProjects: Project[] = [
-  {
-    id: 1,
-    title: "Mecanum wheel AGV",
-    description:
-      "Mecanum wheel AGVs are omnidirectional robots that use specially designed wheels with angled rollers to move in any direction without changing orientation, making them ideal for precise navigation in tight industrial spaces.",
-    image: "https://i.ibb.co/q3gwWH7N/mecanum-robot.jpg",
-    technologies: ["React", "Node.js", "C++", "MATLAB"],
-  },
-  {
-    id: 2,
-    title: "AI Content Generator",
-    description:
-      "Platform that leverages AI to create various types of content for Youtube shorts and social media",
-    image:
-      "https://i.ibb.co/93sLbnKR/477222665-3896728863881935-8280609018506937864-n.jpg",
-    technologies: ["Python", "TensorFlow", "Next.js", "OpenAI API"],
-  },
-  {
-    id: 3,
-    title: "Roblox Scripts Web App",
-    description:
-      "Web application for roblox scripters to track their progress and share their scripts with others",
-    image: "https://i.ibb.co/mCYX6WCx/Thi-t-k-ch-a-c-t-n.png",
-    technologies: ["React Native", "Firebase", "Redux", "Express"],
-  },
-];
+import { getFeaturedProjects } from "../../data/projects";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ProjectsPreview: React.FC = () => {
+  // Use the featured projects from the central data source
+  const featuredProjects = getFeaturedProjects();
+
+  // Responsive states
+  const [isMobile, setIsMobile] = useState(false);
+  const [projectsPerSlide, setProjectsPerSlide] = useState(3);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Update projectsPerSlide based on screen width
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setProjectsPerSlide(mobile ? 1 : 3);
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Clean up
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Reset current slide when projects per slide changes
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [projectsPerSlide]);
+
+  const totalSlides = Math.ceil(featuredProjects.length / projectsPerSlide);
+
+  // Navigation functions
+  const goToNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  };
+
+  const goToPrevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
+
+  // Get current projects to display
+  const currentProjects = featuredProjects.slice(
+    currentSlide * projectsPerSlide,
+    (currentSlide + 1) * projectsPerSlide
+  );
+
   return (
     <section id="projects-preview" className="py-20 px-4 bg-prometheus-bg/30">
       <div className="max-w-7xl mx-auto">
@@ -70,64 +84,122 @@ const ProjectsPreview: React.FC = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {featuredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="bg-prometheus-bg rounded-xl overflow-hidden shadow-xl hover:shadow-prometheus-accent/20 transform transition-all duration-300 hover:-translate-y-2 group"
+        <div className="relative">
+          {/* Slider navigation buttons */}
+          {featuredProjects.length > projectsPerSlide && (
+            <>
+              <button
+                onClick={goToPrevSlide}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 md:-ml-6 z-10 bg-prometheus-bg/60 hover:bg-prometheus-bg/80 text-white rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-lg transition-all duration-300"
+              >
+                <i className="fas fa-chevron-left"></i>
+              </button>
+              <button
+                onClick={goToNextSlide}
+                className="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 md:-mr-6 z-10 bg-prometheus-bg/60 hover:bg-prometheus-bg/80 text-white rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-lg transition-all duration-300"
+              >
+                <i className="fas fa-chevron-right"></i>
+              </button>
+            </>
+          )}
+
+          {/* Projects grid */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`slide-${currentSlide}`}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.5 }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
             >
-              <div className="relative overflow-hidden h-52">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div className="p-4">
-                    <h3 className="text-xl font-bold text-white">
-                      {project.title}
-                    </h3>
+              {currentProjects.map((project) => (
+                <div
+                  key={project.id}
+                  className="bg-prometheus-bg rounded-xl overflow-hidden shadow-xl hover:shadow-prometheus-accent/20 transform transition-all duration-300 hover:-translate-y-2 group mx-auto md:mx-0 max-w-md md:max-w-full"
+                >
+                  <div className="relative overflow-hidden h-52">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src =
+                          "https://images.unsplash.com/photo-1583508915901-b5f84c1dcde1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2plY3R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60";
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                      <div className="p-4">
+                        <h3 className="text-xl font-bold text-white">
+                          {project.title}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+                    <p className="text-gray-300 mb-4 line-clamp-2">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.slice(0, 3).map((tech, i) => (
+                        <span
+                          key={i}
+                          className="bg-prometheus-accent/10 text-prometheus-accent text-sm rounded-full px-3 py-1"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <span className="text-xs text-gray-400 flex items-center">
+                          +{project.technologies.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                    <Link
+                      to={`/work`}
+                      className="inline-flex items-center text-prometheus-accent hover:text-prometheus-light-blue transition-colors"
+                    >
+                      View Project
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        className="w-4 h-4 ml-1"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                        />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                <p className="text-gray-300 mb-4 line-clamp-2">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="bg-prometheus-accent/10 text-prometheus-accent text-sm rounded-full px-3 py-1"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <Link
-                  to={`/work`}
-                  className="inline-flex items-center text-prometheus-accent hover:text-prometheus-light-blue transition-colors"
-                >
-                  View Project
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                    stroke="currentColor"
-                    className="w-4 h-4 ml-1"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                    />
-                  </svg>
-                </Link>
-              </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Pagination indicators */}
+          {totalSlides > 1 && (
+            <div className="flex justify-center mt-8 space-x-2">
+              {Array.from({ length: totalSlides }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    currentSlide === index
+                      ? "bg-prometheus-accent w-8"
+                      : "bg-gray-500 hover:bg-gray-400"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
             </div>
-          ))}
+          )}
         </div>
 
         <div className="mt-12 text-center md:hidden">

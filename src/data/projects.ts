@@ -7,6 +7,8 @@ export interface Project {
   image: string;
   githubUrl?: string;
   liveUrl?: string;
+  featured?: boolean; // Flag for homepage featured projects
+  keyProject?: boolean; // Flag for resume key projects
 }
 
 // Make sure these placeholder images are accessible or replace with actual images
@@ -32,9 +34,11 @@ export const projects: Project[] = [
       "Tailwind CSS",
     ],
     image:
-      "https://placehold.co/800x600/244855/FBE9D0?text=E-Commerce+Dashboard",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGRhc2hib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
     githubUrl: "https://github.com/username/ecommerce-dashboard",
     liveUrl: "https://ecommerce-dashboard-demo.netlify.app",
+    featured: true,
+    keyProject: true,
   },
   {
     id: 2,
@@ -57,9 +61,11 @@ export const projects: Project[] = [
       "Express",
     ],
     image:
-      "https://placehold.co/800x600/244855/FBE9D0?text=AI+Content+Generator",
+      "https://images.unsplash.com/photo-1677329661610-5d4dfa5c74e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YWklMjBnZW5lcmF0aXZlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
     githubUrl: "https://github.com/username/ai-content-generator",
     liveUrl: "https://ai-content-generator.herokuapp.com",
+    featured: true,
+    keyProject: true,
   },
   {
     id: 3,
@@ -80,9 +86,12 @@ export const projects: Project[] = [
       "Express",
       "Chart.js",
     ],
-    image: "https://placehold.co/800x600/244855/FBE9D0?text=Fitness+Tracker",
+    image:
+      "https://images.unsplash.com/photo-1576678927484-cc907957088c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Zml0bmVzcyUyMGFwcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
     githubUrl: "https://github.com/username/fitness-tracker",
     liveUrl: "https://fitnesstrack.demo.app",
+    featured: true,
+    keyProject: false,
   },
   {
     id: 4,
@@ -104,8 +113,11 @@ export const projects: Project[] = [
       "MongoDB",
       "Docker",
     ],
-    image: "https://placehold.co/800x600/244855/FBE9D0?text=Smart+Home+System",
+    image:
+      "https://images.unsplash.com/photo-1558227756-8d319692b94e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c21hcnQlMjBob21lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
     githubUrl: "https://github.com/username/smart-home-control",
+    featured: true,
+    keyProject: true,
   },
   {
     id: 5,
@@ -127,9 +139,12 @@ export const projects: Project[] = [
       "Three.js",
       "Firebase",
     ],
-    image: "https://placehold.co/800x600/244855/FBE9D0?text=VR+Education",
+    image:
+      "https://images.unsplash.com/photo-1626379953822-baec19c3accd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dmlydHVhbCUyMHJlYWxpdHl8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
     githubUrl: "https://github.com/username/vr-education",
     liveUrl: "https://vr-education-demo.io",
+    featured: true,
+    keyProject: true,
   },
   {
     id: 6,
@@ -151,7 +166,19 @@ export const projects: Project[] = [
       "Node.js",
       "Express",
     ],
-    image: "https://placehold.co/800x600/244855/FBE9D0?text=Blockchain+Voting",
+    image:
+      "https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJsb2NrY2hhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
     githubUrl: "https://github.com/username/blockchain-voting",
+    featured: false,
+    keyProject: true,
   },
 ];
+
+// Utility functions to get filtered projects
+export const getFeaturedProjects = (): Project[] => {
+  return projects.filter((project) => project.featured);
+};
+
+export const getKeyProjects = (): Project[] => {
+  return projects.filter((project) => project.keyProject);
+};
