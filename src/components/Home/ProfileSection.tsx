@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useLocalization } from "../../context/LocalizationContext";
 
 const ProfileSection: React.FC = () => {
@@ -7,8 +8,19 @@ const ProfileSection: React.FC = () => {
   return (
     <section
       id="home"
-      className="py-20 md:py-32 px-4 flex flex-col md:flex-row items-center max-w-7xl mx-auto"
+      className="py-20 md:py-32 px-4 flex flex-col md:flex-row items-center max-w-7xl mx-auto relative overflow-hidden"
     >
+      {/* Enhanced light mode professional gradient background elements */}
+      <div className="absolute inset-0 opacity-0 light:opacity-100 bg-gradient-to-br from-white via-[#f8fafc] to-[#f0f7fa] z-[-2]"></div>
+      
+      {/* Subtle pattern overlay */}
+      <div className="absolute inset-0 opacity-0 light:opacity-10 bg-pattern z-[-1]"></div>
+      
+      {/* Accent gradient elements */}
+      <div className="absolute top-0 -right-16 h-96 w-96 opacity-0 light:opacity-25 bg-gradient-to-bl from-prometheus-accent/20 via-rose-100/20 to-transparent rounded-full blur-2xl z-[-1]"></div>
+      <div className="absolute bottom-0 left-0 w-full h-48 opacity-0 light:opacity-30 bg-gradient-to-t from-blue-50 to-transparent z-[-1]"></div>
+      <div className="absolute top-1/3 left-0 h-32 w-32 opacity-0 light:opacity-20 bg-gradient-to-r from-prometheus-accent/20 to-transparent rounded-full blur-xl z-[-1]"></div>
+      
       <div className="md:w-1/2 text-center md:text-left mb-12 md:mb-0 md:pr-12">
         <h2 className="text-xl md:text-2xl text-prometheus-light-blue font-medium mb-3">
           {t("job.title")}
@@ -23,27 +35,36 @@ const ProfileSection: React.FC = () => {
           and user experience in every project.
         </p>
         <div className="flex flex-col sm:flex-row items-center md:items-start space-y-4 sm:space-y-0 sm:space-x-6">
-          <a
-            href="/cv.pdf"
-            className="bg-prometheus-accent hover:bg-prometheus-accent-darker text-prometheus-bg px-8 py-4 rounded-full text-lg font-medium transition duration-300 transform hover:scale-105 inline-flex items-center shadow-lg shadow-prometheus-accent/20"
-            aria-label="Download CV"
+          <Link
+            to="/resume"
+            className="resume-button bg-prometheus-accent hover:bg-prometheus-accent-darker text-prometheus-bg px-8 py-4 rounded-full text-lg font-medium transition-all duration-500 inline-flex items-center shadow-lg relative overflow-hidden group"
+            aria-label="View Resume"
           >
-            {t("download.cv")}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              className="w-5 h-5 ml-2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
-              />
-            </svg>
-          </a>
+            {/* Animated gradient background */}
+            <span className="absolute inset-0 bg-gradient-to-r from-prometheus-accent via-prometheus-accent-darker to-prometheus-accent bg-size-200 animate-gradient-x"></span>
+            
+            {/* Button text */}
+            <span className="relative z-10 flex items-center">
+              <span className="mr-2">View Resume</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                />
+              </svg>
+            </span>
+            
+            {/* Animated shine effect */}
+            <span className="absolute inset-0 w-full h-full shine-effect"></span>
+          </Link>
           <div className="flex space-x-5">
             <SocialLink
               href="https://github.com/mintdunno"
@@ -71,20 +92,34 @@ const ProfileSection: React.FC = () => {
       <div className="md:w-1/2 relative">
         <div className="relative mx-auto w-72 h-72 md:w-96 md:h-96">
           {/* Background decorative elements */}
-          <div className="absolute -z-10 w-full h-full rounded-full bg-prometheus-accent/20 blur-3xl"></div>
+          <div className="absolute -z-10 w-full h-full rounded-full bg-prometheus-accent/20 blur-3xl light:bg-prometheus-accent/10 light:blur-2xl"></div>
           <div className="absolute -top-4 -left-4 w-32 h-32 rounded-full border-2 border-prometheus-accent/30 animate-spin-slow"></div>
           <div className="absolute -bottom-8 -right-8 w-48 h-48 rounded-full border-4 border-prometheus-light-blue/20 animate-spin-slow-reverse"></div>
 
-          {/* Main profile image with effects */}
-          <div className="relative w-full h-full">
+          {/* Enhanced profile image with interactive effects */}
+          <div className="relative w-full h-full profile-image-container group cursor-pointer">
+            {/* Animated background glow */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-prometheus-accent/30 to-prometheus-light-blue/30 blur-xl transform scale-105 group-hover:scale-125 transition-all duration-700 opacity-60 group-hover:opacity-80 group-hover:animate-pulse-slow"></div>
+            
+            {/* Outer ring */}
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-prometheus-accent via-prometheus-light-blue to-prometheus-accent opacity-0 group-hover:opacity-100 blur-md transition-all duration-700 animate-spin-very-slow"></div>
+            
+            {/* Multiple particle effects */}
+            <div className="particles-container">
+              {[...Array(5)].map((_, i) => (
+                <span key={i} className={`particle particle-${i+1} opacity-0 group-hover:opacity-100`}></span>
+              ))}
+            </div>
+            
+            {/* Main profile image */}
             <img
               src="/profile.jpg"
               alt="Minh Tran - Profile"
-              className="rounded-full w-full h-full object-cover border-[5px] border-prometheus-bg shadow-2xl shadow-prometheus-accent/30 avatar-border hover:avatar-hover"
+              className="rounded-full w-full h-full object-cover border-[5px] border-prometheus-bg shadow-2xl shadow-prometheus-accent/30 avatar-border group-hover:avatar-hover light:border-white light:shadow-gray-200/30 relative z-10 transition-all duration-500"
             />
 
-            {/* Accent elements */}
-            <div className="absolute -bottom-5 -right-5 bg-prometheus-accent text-white text-xl p-4 rounded-full shadow-lg">
+            {/* Code icon with enhanced animation */}
+            <div className="absolute -bottom-5 -right-5 bg-prometheus-accent text-white text-xl p-4 rounded-full shadow-lg light:shadow-md transform group-hover:rotate-[360deg] group-hover:scale-110 transition-all duration-700">
               <i className="fas fa-code"></i>
             </div>
           </div>
