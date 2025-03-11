@@ -7,7 +7,7 @@ const Projects: React.FC = () => {
   const keyProjects = getKeyProjects();
 
   // Responsive states
-  const [isMobile, setIsMobile] = useState(false);
+  // Remove the unused isMobile state, since it's only set but never read
   const [projectsPerSlide, setProjectsPerSlide] = useState(3);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -15,7 +15,7 @@ const Projects: React.FC = () => {
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
+      // We don't need to track isMobile separately since it's not used
       setProjectsPerSlide(mobile ? 1 : 3);
     };
 
