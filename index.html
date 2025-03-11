@@ -15,15 +15,11 @@
   <meta name="description" content="Minh Tran - Software Engineer Portfolio">
   <!-- Use relative path for favicon -->
   <link rel="icon" type="image/svg+xml" href="public/profile.jpg" />
-  <!-- CSS files - Using correct paths for both local and GitHub Pages -->
-  <link rel="stylesheet" href="css/index.css" />
-  <link rel="stylesheet" href="css/goToTop.css" />
 </head>
 
 <body>
   <div id="root"></div>
   <script type="module" src="src/main.tsx"></script>
-  <script src="js/goToTop.js"></script>
 
   <!-- Script to handle different environments -->
   <script>
@@ -38,20 +34,6 @@
       console.log('Running on GitHub Pages');
     } else {
       console.log('Running locally');
-    }
-  </script>
-
-  <!-- Ensure proper loading of Go To Top script -->
-  <script>
-    // This helps with Cloudflare's Rocket Loader
-    if (typeof window.addEventListener === 'function') {
-        window.addEventListener('load', function() {
-            // Check if button exists, if not - try to initialize it
-            if (!document.getElementById('goTopBtn') && typeof initGoToTopButton === 'function') {
-                console.log('Fallback initialization of Go To Top button');
-                initGoToTopButton();
-            }
-        });
     }
   </script>
 </body>

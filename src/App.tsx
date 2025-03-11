@@ -9,6 +9,7 @@ import { AppProvider } from "./context/AppContext";
 import { LocalizationProvider } from "./context/LocalizationContext";
 import { enableSmoothScroll, initPremiumAnimations } from "./utils/animations";
 import { setupResponsiveMenu } from "./utils/responsiveHelper";
+import GoToTopButton from "./components/GoToTopButton";
 
 // Use environment variables for base URL
 const baseUrl = import.meta.env.VITE_BASE_URL || "/";
@@ -45,6 +46,7 @@ const App: React.FC = () => {
             <Route path={`${baseUrl}hire-me`} element={<HireMePage />} />
             <Route path="*" element={<HomePage />} />
           </Routes>
+          <GoToTopButton />
         </div>
       </LocalizationProvider>
     </AppProvider>
