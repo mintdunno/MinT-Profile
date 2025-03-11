@@ -107,7 +107,56 @@ You can also manually trigger a deployment:
 
 2. This will build your project with production settings and deploy it to GitHub Pages.
 
-### 3. Building for Different Environments
+### 3. Deploying to Cloudflare Pages
+
+Cloudflare Pages provides a fast and secure hosting solution with automatic HTTPS and global CDN distribution.
+
+#### First-time Setup
+
+1. Push your repository to GitHub (if not already done).
+
+2. Go to [Cloudflare Pages](https://pages.cloudflare.com/) and sign in with your Cloudflare account.
+
+3. Click "Create a project" and select "Connect to Git".
+
+4. Select your GitHub repository with the MinT Portfolio code.
+
+5. Configure your build settings:
+   - **Project name**: `mint-portfolio` (or any name you prefer)
+   - **Production branch**: `main`
+   - **Build command**: `npm run build`
+   - **Build output directory**: `dist`
+   - **Framework preset**: Select "Vite"
+
+6. Click "Save and Deploy".
+
+7. Wait for the initial build to complete. Your site will be available at `https://{project-name}.pages.dev`.
+
+#### Subsequent Deployments
+
+Once set up, Cloudflare Pages will automatically deploy when you push changes to your repository. You can also manually trigger deployments from the Cloudflare Pages dashboard.
+
+#### Custom Domain (Optional)
+
+1. In your Cloudflare Pages project, go to "Custom domains".
+2. Click "Set up a custom domain".
+3. Follow the instructions to add and verify your domain.
+
+### 4. Local Development
+
+To run the project locally:
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Your site will be available at http://localhost:5173/ (or another port if 5173 is in use).
+
+### 5. Building for Different Environments
 
 This project supports different build environments:
 
