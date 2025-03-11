@@ -10,6 +10,9 @@ const ProfileSection: React.FC = () => {
       id="home"
       className="py-20 md:py-32 px-4 flex flex-col md:flex-row items-center max-w-7xl mx-auto relative overflow-hidden"
     >
+      {/* Animated background with shifting colors */}
+      <div className="absolute inset-0 animated-bg-gradient z-[-3]"></div>
+      
       {/* Enhanced light mode professional gradient background elements */}
       <div className="absolute inset-0 opacity-0 light:opacity-100 bg-gradient-to-br from-white via-[#f8fafc] to-[#f0f7fa] z-[-2]"></div>
       
@@ -20,6 +23,11 @@ const ProfileSection: React.FC = () => {
       <div className="absolute top-0 -right-16 h-96 w-96 opacity-0 light:opacity-25 bg-gradient-to-bl from-prometheus-accent/20 via-rose-100/20 to-transparent rounded-full blur-2xl z-[-1]"></div>
       <div className="absolute bottom-0 left-0 w-full h-48 opacity-0 light:opacity-30 bg-gradient-to-t from-blue-50 to-transparent z-[-1]"></div>
       <div className="absolute top-1/3 left-0 h-32 w-32 opacity-0 light:opacity-20 bg-gradient-to-r from-prometheus-accent/20 to-transparent rounded-full blur-xl z-[-1]"></div>
+      
+      {/* Animated color orbs */}
+      <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-400/10 dark:bg-blue-400/5 rounded-full animate-float-slow blur-2xl z-[-1]"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-purple-400/10 dark:bg-purple-400/5 rounded-full animate-float-slow-reverse blur-2xl z-[-1]"></div>
+      <div className="absolute top-3/4 right-1/3 w-24 h-24 bg-amber-400/10 dark:bg-amber-400/5 rounded-full animate-float-slow2 blur-2xl z-[-1]"></div>
       
       <div className="md:w-1/2 text-center md:text-left mb-12 md:mb-0 md:pr-12">
         <h2 className="text-xl md:text-2xl text-prometheus-light-blue font-medium mb-3">
@@ -37,14 +45,14 @@ const ProfileSection: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center md:items-start space-y-4 sm:space-y-0 sm:space-x-6">
           <Link
             to="/resume"
-            className="resume-button bg-prometheus-accent hover:bg-prometheus-accent-darker text-prometheus-bg px-8 py-4 rounded-full text-lg font-medium transition-all duration-500 inline-flex items-center shadow-lg relative overflow-hidden group"
+            className="resume-button-premium px-8 py-4 rounded-full text-lg font-semibold transition-all duration-500 inline-flex items-center shadow-lg relative overflow-hidden group"
             aria-label="View Resume"
           >
-            {/* Animated gradient background */}
-            <span className="absolute inset-0 bg-gradient-to-r from-prometheus-accent via-prometheus-accent-darker to-prometheus-accent bg-size-200 animate-gradient-x"></span>
+            {/* Animated background for button */}
+            <span className="absolute inset-0 bg-gradient-to-r from-[#ff7e5f] via-[#feb47b] to-[#ff7e5f] bg-size-200 animate-gradient-x z-0"></span>
             
             {/* Button text */}
-            <span className="relative z-10 flex items-center">
+            <span className="relative z-10 flex items-center text-white">
               <span className="mr-2">View Resume</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +72,9 @@ const ProfileSection: React.FC = () => {
             
             {/* Animated shine effect */}
             <span className="absolute inset-0 w-full h-full shine-effect"></span>
+            
+            {/* Hover glow effect */}
+            <span className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-white/10 via-white/5 to-transparent"></span>
           </Link>
           <div className="flex space-x-5">
             <SocialLink
