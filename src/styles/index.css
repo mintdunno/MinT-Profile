@@ -2562,3 +2562,135 @@ section.smooth-entrance.entered {
 .animate-float-slow2 {
   animation: float-slow2 12s ease-in-out infinite;
 }
+
+/* Enhanced Animated Background Gradients */
+
+/* Profile section animated background */
+.animated-bg-gradient {
+  background: linear-gradient(-45deg, 
+    rgba(36, 72, 85, 0.5), 
+    rgba(47, 94, 109, 0.5), 
+    rgba(60, 118, 134, 0.5),
+    rgba(87, 116, 146, 0.5));
+  background-size: 200% 200%;  /* Smaller size makes movement more obvious */
+  animation: gradient-shift 8s ease infinite; /* Faster animation */
+  opacity: 1;
+  z-index: -3;
+}
+
+.light .animated-bg-gradient {
+  background: linear-gradient(-45deg, 
+    rgba(244, 251, 255, 0.9),
+    rgba(236, 248, 255, 0.9),
+    rgba(245, 225, 220, 0.9),  /* Added warmer tint for contrast */
+    rgba(230, 243, 250, 0.9));
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+  opacity: 1;
+  z-index: -3;
+}
+
+/* Contact section animated background */
+.contact-animated-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(-45deg, 
+    rgba(36, 72, 85, 0.7), 
+    rgba(58, 90, 105, 0.7), 
+    rgba(75, 109, 124, 0.7),
+    rgba(36, 72, 85, 0.7));
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite; /* Even faster animation */
+  opacity: 1;
+}
+
+.light .contact-animated-bg {
+  background: linear-gradient(-45deg, 
+    rgba(236, 253, 245, 0.95),
+    rgba(248, 250, 252, 0.95),
+    rgba(255, 240, 245, 0.95),  /* Added pink tint for contrast */
+    rgba(240, 249, 255, 0.95));
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+  opacity: 1;
+}
+
+/* Much more pronounced gradient shift animation */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Enhanced color orbs - MUCH MORE VISIBLE */
+.contact-color-orb-1 {
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  width: 60vh;
+  height: 60vh;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, 
+    rgba(230, 72, 51, 0.25) 0%,
+    rgba(230, 72, 51, 0) 70%);
+  filter: blur(30px);
+  animation: float-slow 10s ease-in-out infinite;
+  opacity: 1;
+  z-index: -1;
+}
+
+.contact-color-orb-2 {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  width: 50vh;
+  height: 50vh;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, 
+    rgba(144, 174, 173, 0.3) 0%,
+    rgba(144, 174, 173, 0) 70%);
+  filter: blur(30px);
+  animation: float-slow-reverse 12s ease-in-out infinite;
+  opacity: 1;
+  z-index: -1;
+}
+
+/* Very visible profile orb */
+.profile-color-orb {
+  position: absolute;
+  top: 40%;
+  right: 15%;
+  width: 60vh;
+  height: 60vh;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, 
+    rgba(230, 72, 51, 0.2) 0%,
+    rgba(230, 72, 51, 0) 70%);
+  filter: blur(30px);
+  animation: float-slow2 15s ease-in-out infinite;
+  opacity: 1;
+  z-index: -2;
+}
+
+/* Additional animated elements for profile */
+.profile-highlight-beam {
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  right: -10%;
+  height: 40%;
+  background: linear-gradient(90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0));
+  transform: rotate(15deg);
+  filter: blur(10px);
+  animation: beam-move 12s linear infinite;
+  z-index: -1;
+}
+
+@keyframes beam-move {
+  0% { transform: translateY(-100%) rotate(15deg); }
+  100% { transform: translateY(1000%) rotate(15deg); }
+}

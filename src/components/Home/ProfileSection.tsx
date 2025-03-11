@@ -10,8 +10,14 @@ const ProfileSection: React.FC = () => {
       id="home"
       className="py-20 md:py-32 px-4 flex flex-col md:flex-row items-center max-w-7xl mx-auto relative overflow-hidden"
     >
-      {/* Animated background with shifting colors */}
-      <div className="absolute inset-0 animated-bg-gradient z-[-3]"></div>
+      {/* Animated background with shifting colors - VERY OBVIOUS NOW */}
+      <div className="absolute inset-0 animated-bg-gradient"></div>
+      
+      {/* Very obvious animated light beam */}
+      <div className="profile-highlight-beam"></div>
+      
+      {/* Additional animated color orb specific to profile */}
+      <div className="profile-color-orb"></div>
       
       {/* Enhanced light mode professional gradient background elements */}
       <div className="absolute inset-0 opacity-0 light:opacity-100 bg-gradient-to-br from-white via-[#f8fafc] to-[#f0f7fa] z-[-2]"></div>
@@ -25,9 +31,9 @@ const ProfileSection: React.FC = () => {
       <div className="absolute top-1/3 left-0 h-32 w-32 opacity-0 light:opacity-20 bg-gradient-to-r from-prometheus-accent/20 to-transparent rounded-full blur-xl z-[-1]"></div>
       
       {/* Animated color orbs */}
-      <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-400/10 dark:bg-blue-400/5 rounded-full animate-float-slow blur-2xl z-[-1]"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-purple-400/10 dark:bg-purple-400/5 rounded-full animate-float-slow-reverse blur-2xl z-[-1]"></div>
-      <div className="absolute top-3/4 right-1/3 w-24 h-24 bg-amber-400/10 dark:bg-amber-400/5 rounded-full animate-float-slow2 blur-2xl z-[-1]"></div>
+      <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-400/20 dark:bg-blue-400/10 rounded-full animate-float-slow blur-2xl z-[-1]"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-purple-400/20 dark:bg-purple-400/10 rounded-full animate-float-slow-reverse blur-2xl z-[-1]"></div>
+      <div className="absolute top-3/4 right-1/3 w-24 h-24 bg-amber-400/20 dark:bg-amber-400/10 rounded-full animate-float-slow2 blur-2xl z-[-1]"></div>
       
       <div className="md:w-1/2 text-center md:text-left mb-12 md:mb-0 md:pr-12">
         <h2 className="text-xl md:text-2xl text-prometheus-light-blue font-medium mb-3">
