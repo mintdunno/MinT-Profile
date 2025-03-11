@@ -1,0 +1,23 @@
+/* Import all CSS files to consolidate them */
+@import 'index.css';
+@import '../css/goToTop.css';
+
+/* Fix for any path inconsistencies */
+:root {
+    --asset-path: '';
+    /* Will be set via JavaScript */
+}
+
+/* Helper class for dynamic asset paths */
+.dynamic-asset {
+    background-image: var(--asset-path, url(''));
+}
+
+/* Make sure the CSS works in both local and GitHub environments */
+@media screen {
+    body {
+        /* Ensure proper rendering in both environments */
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+}

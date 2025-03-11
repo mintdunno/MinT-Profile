@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#244855">
+  <title>MinT Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome Kit -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <meta name="description" content="Minh Tran - Software Engineer Portfolio">
+  <!-- Use relative path for favicon -->
+  <link rel="icon" type="image/svg+xml" href="public/profile.jpg" />
+  <!-- CSS files - Using correct paths for both local and GitHub Pages -->
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/goToTop.css" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="src/main.tsx"></script>
+  <script src="js/goToTop.js"></script>
+
+  <!-- Script to handle different environments -->
+  <script>
+    // Check if we're running on GitHub Pages
+    if (window.location.hostname.includes('github.io')) {
+      // Add base tag for GitHub Pages
+      const base = document.createElement('base');
+      base.href = '/MinT_Porfolio/';
+      document.head.prepend(base);
+
+      // Log environment info
+      console.log('Running on GitHub Pages');
+    } else {
+      console.log('Running locally');
+    }
+  </script>
+</body>
+
+</html>

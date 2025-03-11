@@ -1,0 +1,1951 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font - Poppins */
+body {
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme Variables */
+:root {
+    --color-bg: #f8f9fa;
+    --color-text: #333333;
+    --color-accent: #E64833;
+    --color-accent-darker: #874F41;
+    --color-light-blue: #90AEAD;
+    --color-card-bg: rgba(255, 255, 255, 0.9);
+    --shadow-color: rgba(230, 72, 51, 0.2);
+}
+
+:root.dark {
+    --color-bg: #244855;
+    --color-text: #FBE9D0;
+    --color-accent: #E64833;
+    --color-accent-darker: #874F41;
+    --color-light-blue: #90AEAD;
+    --color-card-bg: rgba(0, 0, 0, 0.2);
+    --shadow-color: rgba(230, 72, 51, 0.7);
+}
+
+/* Apply theme variables */
+.theme-aware-bg {
+    background-color: var(--color-bg);
+}
+
+.theme-aware-text {
+    color: var(--color-text);
+}
+
+/* Dark mode specific adjustments */
+.dark .theme-card {
+    @apply bg-gray-800/50;
+}
+
+.light .theme-card {
+    @apply bg-white/90 shadow-md;
+}
+
+/* Active Nav Link Style */
+.nav-link.active {
+    @apply text-prometheus-accent border-b-2 border-prometheus-accent;
+}
+
+/* Hamburger Icon - Hide on md and larger */
+#hamburger-button {
+    @apply hidden;
+    /* Always hidden by default */
+    @apply flex flex-col justify-around w-6 h-6 cursor-pointer;
+    /* Apply only if we need to display it */
+}
+
+.hamburger-bar {
+    @apply block w-full h-0.5 bg-prometheus-text transition-all duration-300;
+}
+
+#hamburger-button.open .hamburger-bar:nth-child(1) {
+    @apply transform rotate-45 translate-y-1.5;
+}
+
+#hamburger-button.open .hamburger-bar:nth-child(2) {
+    @apply opacity-0;
+}
+
+#hamburger-button.open .hamburger-bar:nth-child(3) {
+    @apply transform -rotate-45 -translate-y-1.5;
+}
+
+/* Side Menu */
+#side-menu.open {
+    @apply transform translate-x-0;
+}
+
+/* Overlay */
+#overlay.open {
+    @apply block;
+}
+
+.blur-content {
+    filter: blur(5px);
+    transition: filter 0.3s ease-in-out;
+}
+
+/* Mobile Menu Enhancements */
+#side-menu {
+    @apply bg-prometheus-bg;
+    /* Dark Blue */
+}
+
+#side-menu .side-menu-link {
+    @apply text-prometheus-text;
+    /* Beige */
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #3a5e6e;
+    /* Slightly lighter shade of Dark Blue */
+}
+
+#side-menu .side-menu-link:hover {
+    background-color: #3a5e6e;
+    /* Slightly lighter shade of Dark Blue */
+    @apply text-prometheus-accent;
+    /* Orange */
+}
+
+#close-button {
+    padding: 0.5rem;
+}
+
+/* Avatar border and hover effect */
+.avatar-border {
+    border: none;
+    /* Remove the dashed border */
+    box-shadow: 0 0 20px rgba(230, 72, 51, 0.7);
+    animation: breathe 4s ease-in-out infinite alternate, glow 5s ease-in-out infinite alternate;
+}
+
+.avatar-hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+    transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+}
+
+/* Keyframes for avatar animations */
+@keyframes breathe {
+    from {
+        transform: scale(0.97);
+    }
+
+    to {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 15px rgba(230, 72, 51, 0.4);
+    }
+
+    to {
+        box-shadow: 0 0 30px rgba(230, 72, 51, 0.8), 0 0 50px rgba(230, 72, 51, 0.3);
+    }
+}
+
+/* Keyframes for avatar border animation */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    from {
+        border-width: 3px;
+    }
+
+    to {
+        border-width: 5px;
+    }
+}
+
+/* Complex Stunning Appear Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(50%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1.5s ease-out;
+}
+
+/* Apply animations to specific elements */
+#home h1 {
+    animation: slideInFromLeft 1s ease-out forwards;
+}
+
+#home h2,
+#home p {
+    animation: slideInFromLeft 1.2s ease-out forwards;
+}
+
+#home .avatar-border {
+    animation: scaleIn 1s ease-out forwards, breathe 4s ease-in-out infinite alternate, glow 5s ease-in-out infinite alternate;
+}
+
+#home .mt-8>* {
+    /* Social icons and button */
+    animation: slideInFromRight 1s ease-out forwards;
+}
+
+/* Enhanced animations for the homepage */
+.animate-entrance {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-entrance.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Image hover effects */
+.img-hover-zoom {
+    overflow: hidden;
+}
+
+.img-hover-zoom img {
+    transition: transform 0.8s ease;
+}
+
+.img-hover-zoom:hover img {
+    transform: scale(1.05);
+}
+
+/* Enhanced gradient backgrounds */
+.bg-gradient-glow {
+    background: linear-gradient(135deg,
+            rgba(230, 72, 51, 0.2) 0%,
+            rgba(36, 72, 85, 0.2) 100%);
+    position: relative;
+}
+
+.bg-gradient-glow::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(135deg,
+            rgba(230, 72, 51, 0.4) 0%,
+            rgba(36, 72, 85, 0.4) 100%);
+    filter: blur(20px);
+    z-index: -1;
+}
+
+/* Custom styled scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a202c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E64833;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #874F41;
+}
+
+/* Theme toggle animation */
+.theme-toggle-icon {
+    transform-origin: center center;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.theme-toggle-button:hover .theme-toggle-icon {
+    transform: rotate(180deg);
+}
+
+/* Enhanced Theme Toggle Animation - Updated for larger size */
+.theme-toggle-button {
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-sizing: content-box;
+}
+
+/* Theme toggle focus styles */
+.theme-toggle-button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Sun rays animation - enhanced for larger toggle */
+.sun-rays::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.8) 0%, rgba(250, 204, 21, 0) 70%);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+/* Theme transition for elements */
+.card,
+.button,
+.nav-item,
+img,
+.project-card {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Light mode adjustments */
+.light {
+    background-color: #f8f9fa;
+    color: #333333;
+}
+
+.light .bg-prometheus-bg {
+    background-color: white;
+}
+
+.light .text-prometheus-text {
+    color: #333333;
+}
+
+.light .border-prometheus-light-blue\/10 {
+    @apply border-gray-200;
+}
+
+.light .bg-prometheus-bg\/50 {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.light .bg-prometheus-bg\/30 {
+    background-color: #f0f4f8;
+}
+
+.light .bg-gray-900\/50 {
+    background-color: #edf2f7;
+}
+
+.light .text-gray-300 {
+    color: #4a5568;
+}
+
+.light .text-gray-400 {
+    color: #718096;
+}
+
+/* Light mode footer */
+.light footer.bg-gray-800 {
+    background-color: #e2e8f0;
+}
+
+.light footer.bg-gray-800.text-white {
+    color: #2d3748;
+}
+
+/* Card styling in light mode */
+.light .bg-prometheus-bg.rounded-xl {
+    @apply bg-white shadow;
+}
+
+/* Navigation in light mode */
+.light #side-menu {
+    background-color: #ffffff;
+    border-left: 1px solid #e2e8f0;
+}
+
+.light #side-menu .side-menu-link {
+    color: #333333;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.light #side-menu .side-menu-link:hover {
+    background-color: #f7fafc;
+    color: var(--color-accent);
+}
+
+.light .hamburger-bar {
+    background-color: #333333;
+}
+
+/* Gradient backgrounds in light mode */
+.light .bg-gradient-to-r.from-prometheus-accent\/20.to-prometheus-light-blue\/20 {
+    background: linear-gradient(to right, rgba(230, 72, 51, 0.1), rgba(144, 174, 173, 0.1));
+    border: 1px solid rgba(230, 72, 51, 0.2);
+}
+
+/* Custom styled scrollbar for light mode */
+.light::-webkit-scrollbar-track {
+    background: #e2e8f0;
+}
+
+.light::-webkit-scrollbar-thumb {
+    background: #E64833;
+    border-radius: 5px;
+}
+
+.light::-webkit-scrollbar-thumb:hover {
+    background: #874F41;
+}
+
+/* Skill cards in light mode */
+.light .bg-prometheus-bg\/50.p-6.rounded-xl {
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.light .bg-gray-700.rounded-full {
+    background-color: #e2e8f0;
+}
+
+/* Project cards in light mode */
+.light .bg-prometheus-accent\/10 {
+    background-color: rgba(230, 72, 51, 0.05);
+}
+
+.light .text-prometheus-accent {
+    color: #E64833;
+}
+
+/* Improve text contrast in light theme */
+/* Fix text in dark backgrounds for light theme */
+.light .text-prometheus-text,
+.light .text-white {
+    color: #333333;
+}
+
+/* But ensure text in dark UI elements stays readable */
+.light .bg-prometheus-accent .text-prometheus-bg,
+.light .bg-prometheus-accent-darker .text-prometheus-bg,
+.light .bg-prometheus-accent .text-white,
+.light .bg-prometheus-accent-darker .text-white,
+.light .bg-prometheus-light-blue .text-white,
+.light .from-prometheus-accent\/70 .text-white,
+.light .to-prometheus-light-blue\/80 .text-white,
+.light a.bg-prometheus-accent,
+.light button.bg-prometheus-accent {
+    color: white !important;
+}
+
+/* Specific fixes for buttons with dark backgrounds in light mode */
+.light a.bg-prometheus-accent,
+.light button.bg-prometheus-accent,
+.light a.bg-prometheus-accent-darker,
+.light button.bg-prometheus-accent-darker {
+    color: white !important;
+}
+
+/* Fix profile social icons contrast in light mode */
+.light .text-prometheus-light-blue {
+    color: #244855;
+}
+
+/* Fix skill cards in light mode */
+.light .bg-prometheus-bg\/50.p-6 h3,
+.light .bg-prometheus-bg\/50.p-6 .text-xl {
+    color: #244855;
+}
+
+/* Fix stat cards in light mode */
+.light .bg-prometheus-bg\/30 h3:not(.text-prometheus-accent) {
+    color: #244855;
+}
+
+/* Fix footer text in light mode */
+.light footer.bg-gray-800 {
+    background-color: #e2e8f0;
+}
+
+.light footer.bg-gray-800 .text-white {
+    color: #333333;
+}
+
+/* Fix buttons and CTAs in light mode */
+.light .bg-gradient-to-r.from-prometheus-accent\/20.to-prometheus-light-blue\/20 h2,
+.light .bg-gradient-to-r.from-prometheus-accent\/20.to-prometheus-light-blue\/20 p {
+    color: #333333;
+}
+
+/* Fix contrast in navigation */
+.light #hamburger-button .hamburger-bar {
+    background-color: #333333;
+}
+
+/* Fix project cards text in light mode */
+.light .bg-prometheus-bg.rounded-xl h3,
+.light .bg-prometheus-bg.rounded-xl p:not(.text-prometheus-accent) {
+    color: #333333;
+}
+
+/* Fix skills progress bars */
+.light .bg-gray-700.rounded-full {
+    background-color: #e2e8f0;
+}
+
+/* Ensure "hire me" button text is white in light theme */
+.light a.bg-prometheus-accent.text-prometheus-bg {
+    color: white !important;
+}
+
+/* Fix specific text elements that are hard to read in light mode */
+
+/* Profile section text fixes */
+.light #home p.text-gray-300,
+.light #home p.text-lg.md\:text-xl.text-gray-300 {
+    color: #333333;
+    font-weight: 500;
+}
+
+.light #home h1.text-5xl,
+.light #home h1.text-5xl span,
+.light #home .text-prometheus-text {
+    color: #244855;
+    font-weight: 700;
+}
+
+/* Job title / subtitle */
+.light #home h2.text-prometheus-light-blue,
+.light #home .text-prometheus-light-blue {
+    color: #244855;
+    font-weight: 600;
+}
+
+/* Contact CTA fixes for light mode */
+.light #contact-cta {
+    background-color: #f8f9fa;
+    border: 1px solid rgba(230, 72, 51, 0.2);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.light #contact-cta h2,
+.light #contact-cta p.text-gray-300 {
+    color: #333333;
+}
+
+.light #contact-cta .bg-gradient-to-r.from-prometheus-accent\/20.to-prometheus-light-blue\/20 {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(230, 72, 51, 0.05));
+}
+
+/* Stronger text contrast for general text sections in light mode */
+.light .text-gray-300 {
+    color: #333333;
+}
+
+.light h1,
+.light h2:not(.text-prometheus-accent),
+.light h3:not(.text-prometheus-accent) {
+    color: #244855;
+}
+
+/* Ensure profile section text is darker and more readable in light mode */
+.light #home {
+    background-color: #f8f9fa;
+}
+
+.light #home p {
+    color: #333333;
+}
+
+/* Greeting text & subtitle enhancement for light mode */
+.light #home h1.text-5xl.md\:text-7xl.font-bold {
+    color: #111827;
+}
+
+.light #home h1.text-5xl.md\:text-7xl.font-bold span.text-prometheus-accent {
+    color: #E64833;
+    font-weight: 700;
+}
+
+/* Fix Skills Section heading and description in light mode */
+.light #skills h2 {
+    color: #244855;
+    font-weight: 700;
+}
+
+.light #skills h2 span.text-prometheus-accent {
+    color: #E64833;
+    font-weight: 700;
+}
+
+.light #skills p.text-gray-300,
+.light #skills p.text-lg.max-w-2xl,
+.light #skills .text-center.mb-16.text-lg {
+    color: #333333;
+    font-weight: 500;
+}
+
+/* Improve text contrast for technologies section */
+.light #skills,
+.light #projects-preview {
+    background-color: #f8f9fa;
+}
+
+/* Stronger heading contrast in light mode throughout the site */
+.light h2.text-3xl,
+.light h2.text-4xl,
+.light h2.text-3xl.md\:text-4xl {
+    color: #1a202c;
+}
+
+/* Ensure consistent text color for paragraph text */
+.light p.text-gray-300,
+.light p.text-center.text-lg,
+.light p.text-center.mb-16,
+.light .text-lg.max-w-2xl {
+    color: #333333 !important;
+    opacity: 0.9;
+}
+
+/* Resume page specific styles */
+.resume-timeline-item {
+    position: relative;
+    padding-left: 30px;
+}
+
+.resume-timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    z-index: 1;
+}
+
+.resume-timeline-item::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 24px;
+    width: 2px;
+    height: calc(100% - 15px);
+    background-color: rgba(230, 72, 51, 0.3);
+}
+
+.resume-timeline-item:last-child::after {
+    display: none;
+}
+
+/* Tab button hover effects */
+button.tab-button {
+    position: relative;
+    overflow: hidden;
+}
+
+button.tab-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+button.tab-button:hover::before {
+    transform: translateX(100%);
+}
+
+/* Enhanced card hover effects for resume sections */
+.resume-card {
+    transition: all 0.3s ease;
+}
+
+.resume-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(230, 72, 51, 0.15);
+}
+
+/* Skills progress bar animation */
+.skill-progress-bar {
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Resume section transition animations */
+.resume-section {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.resume-section.entering {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.resume-section.entered {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Print styles for resume page */
+@media print {
+    .resume-page {
+        background-color: white !important;
+        color: black !important;
+    }
+
+    .resume-page * {
+        color: black !important;
+    }
+
+    header,
+    footer,
+    .hide-print {
+        display: none !important;
+    }
+
+    .resume-content {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .resume-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
+
+/* WorkPage animations */
+.animate-scale-x-100 {
+    animation: scaleX 1.5s forwards;
+}
+
+@keyframes scaleX {
+    from {
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    to {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+}
+
+/* GitHub button with gradient to ensure visibility in both light and dark modes */
+.github-button-gradient {
+    background: linear-gradient(135deg, #24292e 0%, #444 100%);
+    border: 1px solid #444;
+}
+
+.light .github-button-gradient {
+    color: white !important;
+}
+
+.github-button-gradient:hover {
+    background: linear-gradient(135deg, #373d47 0%, #555 100%);
+    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.6);
+}
+
+/* Project Image Container Animation */
+.project-image-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.project-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(230, 72, 51, 0.2), transparent 50%);
+    pointer-events: none;
+}
+
+/* Improving cards and hover states */
+.work-project-card {
+    transition-property: transform, box-shadow, border-color;
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+}
+
+.work-project-card:hover {
+    box-shadow: 0 20px 25px -5px rgb(230 72 51 / 0.2), 0 8px 10px -6px rgb(230 72 51 / 0.2);
+}
+
+/* Fix for specific elements in light mode */
+.light .work-page h1,
+.light .work-page h2,
+.light .work-page h3 {
+    color: #333;
+}
+
+.light .work-project-card .description {
+    color: #4a5568;
+}
+
+/* Improved navigation buttons for work page - better visibility in light mode */
+.nav-button {
+    position: relative;
+    z-index: 30;
+}
+
+.light .nav-button {
+    background-color: rgba(36, 72, 85, 0.8);
+    color: white !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.light .nav-button:hover {
+    background-color: rgba(230, 72, 51, 0.9);
+}
+
+/* Add subtle button glow effect on hover */
+.nav-button:hover {
+    box-shadow: 0 0 15px rgba(230, 72, 51, 0.5);
+}
+
+/* Enhanced box shadow styles for cards in dark and light modes */
+.card-shadow {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Dark mode shadows - subtle glow effect with theme color */
+.dark .card-shadow {
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3), 0 0 10px -5px rgba(230, 72, 51, 0.2);
+}
+
+.dark .card-shadow:hover {
+    box-shadow: 0 8px 30px -2px rgba(0, 0, 0, 0.4), 0 0 15px -5px rgba(230, 72, 51, 0.4);
+    transform: translateY(-4px);
+}
+
+/* Light mode shadows - more pronounced with subtle colored tint */
+.light .card-shadow {
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(230, 72, 51, 0.06);
+}
+
+.light .card-shadow:hover {
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(230, 72, 51, 0.05);
+    transform: translateY(-4px);
+}
+
+/* Enhanced Resume Cards with depth effects */
+.resume-card {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.dark .resume-card {
+    box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.5), 0 0 10px -4px rgba(230, 72, 51, 0.2);
+}
+
+.dark .resume-card:hover {
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 15px -3px rgba(230, 72, 51, 0.3);
+}
+
+.light .resume-card {
+    box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(36, 72, 85, 0.06);
+}
+
+.light .resume-card:hover {
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.1), 0 5px 15px -5px rgba(230, 72, 51, 0.15);
+}
+
+/* Project cards with depth effects */
+.project-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dark .project-card {
+    box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.6), 0 0 5px rgba(230, 72, 51, 0.2);
+}
+
+.dark .project-card:hover {
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.7), 0 0 15px -2px rgba(230, 72, 51, 0.4);
+}
+
+.light .project-card {
+    box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.1), 0 2px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.light .project-card:hover {
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15), 0 10px 20px -10px rgba(230, 72, 51, 0.1);
+}
+
+/* Timeline item enhancment with lighting effects */
+.timeline-item-shadow {
+    position: relative;
+}
+
+.dark .timeline-item-shadow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
+.light .timeline-item-shadow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 0 rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+}
+
+/* Project navigation container shadow */
+.project-nav-container {
+    transition: box-shadow 0.3s ease;
+}
+
+.dark .project-nav-container {
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 15px -3px rgba(230, 72, 51, 0.25);
+}
+
+.light .project-nav-container {
+    box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.15), 0 5px 10px -5px rgba(36, 72, 85, 0.1);
+}
+
+/* Remove all page transition styles */
+.page-transition-block,
+.effect-container,
+.effect-page,
+.page-block-transition-enter,
+.page-block-transition-enter-active,
+.page-block-transition-exit,
+.page-block-transition-exit-active,
+.transition-layer,
+.transition-layer-1,
+.transition-layer-2,
+.transition-layer-3,
+.page-exit .transition-layer,
+.page-enter .transition-layer,
+.page-transition-content,
+.page-slide-transition,
+.page-slide-transition-1,
+.page-slide-transition-2,
+.page-slide-transition-3,
+.transition-ripple,
+.transition-ripple.active,
+.page-transition-shimmer,
+.page-exit .page-transition-shimmer,
+.transition-gradient,
+.transition-gradient::after,
+.luxury-swipe-transition,
+.smooth-transition-overlay,
+.curtain-transition,
+.curtain-reveal,
+.curtain-shine,
+.gradient-curtain,
+.gradient-shimmer,
+.gradient-swipe,
+.animated-gradient-swipe,
+.animated-gradient-shimmer,
+.transition-portal,
+.transition-curtain-1,
+.transition-curtain-2,
+.transition-shimmer {
+    display: none !important;
+}
+
+/* Keep essential animations */
+
+/* Staggered element animations for sections */
+.stagger-item {
+    opacity: 0;
+}
+
+.stagger-fade-in {
+    animation: staggerFadeIn 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes staggerFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Parallax effect for depth */
+.parallax-bg {
+    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: transform;
+}
+
+.parallax-slow {
+    transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.parallax-fast {
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Elegant scale animation */
+.scale-on-hover {
+    transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.scale-on-hover:hover {
+    transform: scale(1.02);
+}
+
+/* Premium reveal animations for content */
+.reveal-bottom {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.reveal-rotate {
+    opacity: 0;
+    transform: rotate(-5deg);
+}
+
+.reveal-active {
+    animation: reveal 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes reveal {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1) rotate(0);
+    }
+}
+
+/* Page transition animations */
+.page-transition-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    transform-origin: top;
+    pointer-events: none;
+}
+
+.effect-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.effect-page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* Color block transition animation */
+.page-block-transition-enter {
+    transform: translateY(-100%);
+}
+
+.page-block-transition-enter-active {
+    transform: translateY(0);
+    transition: transform 500ms ease;
+}
+
+.page-block-transition-exit {
+    transform: translateY(0);
+}
+
+.page-block-transition-exit-active {
+    transform: translateY(100%);
+    transition: transform 500ms ease;
+}
+
+/* Layered transitions for depth */
+.transition-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    pointer-events: none;
+}
+
+.transition-layer-1 {
+    background-color: var(--color-accent);
+    z-index: 9999;
+}
+
+.transition-layer-2 {
+    background-color: var(--color-accent-darker);
+    z-index: 9998;
+    transition-delay: 100ms;
+}
+
+.transition-layer-3 {
+    background-color: var(--color-light-blue);
+    z-index: 9997;
+    transition-delay: 200ms;
+}
+
+/* Animation states for the transition layers */
+.page-exit .transition-layer {
+    animation: slide-in-up 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+.page-enter .transition-layer {
+    transform: scaleY(1);
+    transform-origin: top;
+    animation: slide-out-down 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+@keyframes slide-in-up {
+    0% {
+        transform: scaleY(0);
+    }
+
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes slide-out-down {
+    0% {
+        transform: scaleY(1);
+    }
+
+    100% {
+        transform: scaleY(0);
+    }
+}
+
+/* Ensure content doesn't flicker during transitions */
+.page-transition-content {
+    will-change: transform, opacity;
+}
+
+/* Enhanced Page Transition Effects */
+.page-slide-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    pointer-events: none;
+    transform-origin: left;
+    will-change: transform;
+}
+
+.page-slide-transition-1 {
+    background-color: var(--color-accent);
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+}
+
+.page-slide-transition-2 {
+    background-color: var(--color-light-blue);
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+}
+
+.page-slide-transition-3 {
+    background-color: var(--color-accent-darker);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+}
+
+/* Page Content Transition */
+.page-content {
+    position: relative;
+    z-index: 1;
+    will-change: transform, opacity;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+/* Transition Ripple Effect */
+.transition-ripple {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center,
+            var(--color-accent) 0%,
+            transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.transition-ripple.active {
+    animation: rippleOut 0.8s ease-out forwards;
+}
+
+@keyframes rippleOut {
+    0% {
+        opacity: 0.2;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(2);
+    }
+}
+
+/* Page transition shimmer effect */
+.page-transition-shimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    pointer-events: none;
+}
+
+.page-exit .page-transition-shimmer {
+    animation: shimmerExit 0.7s forwards;
+}
+
+@keyframes shimmerExit {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* Additional page transition animation */
+.slide-in-left-out-right-enter {
+    transform: translateX(-100%);
+}
+
+.slide-in-left-out-right-enter-active {
+    transform: translateX(0);
+    transition: transform 500ms ease-out;
+}
+
+.slide-in-left-out-right-exit {
+    transform: translateX(0);
+}
+
+.slide-in-left-out-right-exit-active {
+    transform: translateX(100%);
+    transition: transform 500ms ease-in;
+}
+
+/* For smoother animations */
+.main-content-wrapper {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Premium Wave Page Transition */
+.transition-gradient {
+    background: linear-gradient(90deg,
+            rgba(230, 72, 51, 0.95) 0%,
+            rgba(135, 79, 65, 0.95) 50%,
+            rgba(144, 174, 173, 0.95) 100%);
+    clip-path: path('M0 0 L100 0 Q75 50 100 100 L0 100 Z');
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 100px rgba(230, 72, 51, 0.5);
+    animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.light .transition-gradient {
+    background: linear-gradient(90deg,
+            rgba(230, 72, 51, 0.9) 0%,
+            rgba(230, 97, 51, 0.9) 30%,
+            rgba(144, 174, 173, 0.9) 100%);
+    box-shadow: 0 0 80px rgba(230, 72, 51, 0.3);
+}
+
+/* Create a subtle shine effect that moves across the transition */
+.transition-gradient::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.2) 50%,
+            transparent 100%);
+    transform: translateX(-100%);
+    animation: shine 1.5s forwards;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* Remove previous transition styles that are no longer needed */
+.luxury-swipe-transition,
+.smooth-transition-overlay,
+.curtain-transition,
+.curtain-reveal,
+.curtain-shine,
+.gradient-curtain,
+.gradient-swipe,
+.gradient-shimmer {
+    display: none;
+}
+
+/* Enhanced Animated Gradient Swipe Effect */
+.animated-gradient-swipe {
+    background: linear-gradient(90deg,
+            rgba(230, 72, 51, 1) 0%,
+            rgba(201, 75, 55, 1) 20%,
+            rgba(175, 79, 65, 1) 40%,
+            rgba(144, 174, 173, 1) 60%,
+            rgba(135, 79, 65, 1) 80%,
+            rgba(144, 174, 173, 0.95) 100%);
+    will-change: transform;
+    transform-origin: left;
+    box-shadow: 0 0 80px rgba(230, 72, 51, 0.8);
+    backdrop-filter: blur(8px);
+    background-size: 300% 100%;
+    animation: gradientMove 3s linear infinite;
+}
+
+/* Light theme version with brighter colors */
+.light .animated-gradient-swipe {
+    background: linear-gradient(90deg,
+            rgba(230, 72, 51, 1) 0%,
+            rgba(235, 91, 56, 1) 20%,
+            rgba(240, 120, 50, 1) 40%,
+            rgba(144, 174, 173, 1) 70%,
+            rgba(244, 248, 250, 0.95) 100%);
+    box-shadow: 0 0 60px rgba(230, 72, 51, 0.6);
+}
+
+/* Enhanced shimmer effect with more visibility */
+.animated-gradient-shimmer {
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.6) 50%,
+            transparent 100%);
+    width: 35%;
+    will-change: transform;
+    filter: blur(4px);
+    pointer-events: none;
+}
+
+/* Vibrant gradient animation */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Remove previous transition styles that are no longer needed */
+.luxury-swipe-transition,
+.smooth-transition-overlay,
+.curtain-transition,
+.curtain-reveal,
+.curtain-shine,
+.gradient-curtain {
+    display: none;
+}
+
+/* Improved Gradient Swipe Animation */
+.gradient-swipe {
+    background: linear-gradient(90deg,
+            rgba(230, 72, 51, 0.95) 0%,
+            rgba(201, 75, 55, 0.95) 20%,
+            rgba(175, 79, 65, 0.95) 40%,
+            rgba(144, 174, 173, 0.95) 60%,
+            rgba(135, 79, 65, 0.95) 80%,
+            rgba(144, 174, 173, 0.9) 100%);
+    will-change: transform;
+    transform-origin: left;
+    box-shadow: 0 0 60px rgba(230, 72, 51, 0.7);
+    backdrop-filter: blur(8px);
+    background-size: 300% 100%;
+}
+
+/* Light theme version of gradient swipe */
+.light .gradient-swipe {
+    background: linear-gradient(90deg,
+            rgba(230, 72, 51, 0.95) 0%,
+            rgba(230, 72, 51, 0.80) 20%,
+            rgba(144, 174, 173, 0.80) 60%,
+            rgba(244, 248, 250, 0.90) 100%);
+    box-shadow: 0 0 40px rgba(230, 72, 51, 0.5);
+}
+
+/* Improved shimmer effect that moves across the curtain */
+.gradient-shimmer {
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.4) 50%,
+            transparent 100%);
+    width: 30%;
+    will-change: transform;
+    pointer-events: none;
+    filter: blur(5px);
+}
+
+/* Light theme version of shimmer */
+.light .gradient-shimmer {
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.6) 50%,
+            transparent 100%);
+}
+
+/* Remove old curtain styles */
+.curtain-transition,
+.curtain-reveal,
+.curtain-shine {
+    display: none;
+}
+
+/* Ensure smoother page content appearance */
+.page-content-wrapper {
+    will-change: opacity;
+    transform: translateZ(0);
+    transition: all 0.8s cubic-bezier(0.43, 0.13, 0.23, 0.96);
+}
+
+/* Ensure the page fade-in is super smooth */
+.app-container {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Smoother animations overall */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Remove any jarring effects on page load/transition */
+* {
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smoother transition overlay with gradient fade */
+.smooth-transition-overlay {
+    background: linear-gradient(90deg,
+            rgba(230, 72, 51, 0.80) 0%,
+            rgba(190, 75, 55, 0.80) 20%,
+            rgba(135, 79, 65, 0.80) 40%,
+            rgba(115, 110, 100, 0.80) 60%,
+            rgba(144, 174, 173, 0.80) 80%,
+            rgba(144, 174, 173, 0.70) 100%);
+    mask-image: linear-gradient(to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.7) 10%,
+            rgba(0, 0, 0, 0.9) 20%,
+            rgba(0, 0, 0, 1) 30%,
+            rgba(0, 0, 0, 1) 70%,
+            rgba(0, 0, 0, 0.9) 80%,
+            rgba(0, 0, 0, 0.7) 90%,
+            transparent 100%);
+    backdrop-filter: blur(4px);
+    will-change: transform, opacity;
+    box-shadow: 0 0 80px 10px rgba(230, 72, 51, 0.3);
+}
+
+/* Page content wrapper with smoother fade in */
+.page-content-wrapper {
+    opacity: 0;
+    animation: smoothFadeIn 0.8s ease-in-out forwards;
+    animation-delay: 0.3s;
+    will-change: opacity;
+}
+
+@keyframes smoothFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Gracefully reveal elements after page load */
+.smooth-entrance {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.smooth-entrance.entered {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Remove previous transition styles we no longer need */
+.luxury-swipe-transition {
+    display: none;
+}
+
+/* Curtain-style transition effect */
+.curtain-transition {
+    background: linear-gradient(90deg,
+            rgba(230, 72, 51, 0.95) 0%,
+            rgba(201, 75, 55, 0.95) 30%,
+            rgba(175, 79, 60, 0.95) 50%,
+            rgba(144, 174, 173, 0.95) 100%);
+    box-shadow: 0 0 40px rgba(230, 72, 51, 0.6);
+    will-change: transform;
+    transform-origin: left;
+    transform: scaleX(0);
+    /* Ensure initial state is correct */
+    backdrop-filter: blur(4px);
+}
+
+/* Ensure content reveal animation works correctly */
+.curtain-reveal {
+    will-change: transform;
+    transform-origin: left;
+    transform: scaleX(1);
+    /* Ensure initial state is correct */
+    background: linear-gradient(90deg,
+            rgba(230, 72, 51, 0.3) 0%,
+            rgba(175, 79, 60, 0.3) 50%,
+            rgba(144, 174, 173, 0.2) 100%);
+    backdrop-filter: blur(4px);
+}
+
+/* Ensure shine effect always starts from off-screen */
+.curtain-shine {
+    transform: translateX(-100%);
+    /* Ensure initial state is correct */
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.15) 50%,
+            transparent 100%);
+    width: 50%;
+    will-change: transform;
+    pointer-events: none;
+}
+
+/* Ensure page content wrapper style is correct */
+.page-content-wrapper {
+    opacity: 1;
+    /* Start visible by default for first load */
+    will-change: opacity, transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Make sure content slides in smoothly after transition */
+.smooth-entrance {
+    opacity: 0;
+    transform: translateX(-15px);
+}
+
+.smooth-entrance.entered {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Enhanced animation for sections to slide in from left */
+section.smooth-entrance {
+    transform: translateX(-20px);
+}
+
+section.smooth-entrance.entered {
+    transform: translateX(0);
+}
+
+/* Premium Page Transition Effects */
+.transition-portal {
+    background: linear-gradient(45deg, var(--color-accent) 0%, var(--color-accent-darker) 100%);
+    will-change: transform;
+    transform-origin: left;
+    box-shadow: 0 0 30px rgba(230, 72, 51, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.transition-curtain-1 {
+    background: linear-gradient(135deg, rgba(230, 72, 51, 0.9) 0%, rgba(144, 174, 173, 0.9) 100%);
+    will-change: transform;
+    transform-origin: left;
+    clip-path: polygon(0 0, 100% 15%, 100% 85%, 0% 100%);
+    box-shadow: 0 0 40px rgba(230, 72, 51, 0.4);
+}
+
+.transition-curtain-2 {
+    background: linear-gradient(135deg, rgba(135, 79, 65, 0.85) 0%, rgba(144, 174, 173, 0.85) 100%);
+    will-change: transform;
+    transform-origin: left;
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 85%);
+}
+
+.transition-shimmer {
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+    will-change: transform;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 100px rgba(255, 255, 255, 0.8);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+}
+
+.light .transition-portal {
+    background: linear-gradient(45deg, rgba(230, 72, 51, 0.95) 0%, rgba(144, 174, 173, 0.95) 100%);
+    box-shadow: 0 0 30px rgba(230, 72, 51, 0.2);
+}
+
+.light .transition-curtain-1 {
+    background: linear-gradient(135deg, rgba(230, 72, 51, 0.8) 0%, rgba(144, 174, 173, 0.8) 100%);
+}
+
+.light .transition-curtain-2 {
+    background: linear-gradient(135deg, rgba(230, 97, 51, 0.75) 0%, rgba(144, 174, 173, 0.75) 100%);
+}
+
+/* Page content animation settings for hardware acceleration */
+.page-content-wrapper>* {
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Staggered element animations for sections */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.stagger-fade-in {
+    animation: staggerFadeIn 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes staggerFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Parallax effect for depth */
+.parallax-bg {
+    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: transform;
+}
+
+.parallax-slow {
+    transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.parallax-fast {
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Elegant scale animation */
+.scale-on-hover {
+    transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.scale-on-hover:hover {
+    transform: scale(1.02);
+}
+
+/* Premium reveal animations for content */
+.reveal-bottom {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.reveal-rotate {
+    opacity: 0;
+    transform: rotate(-5deg);
+}
+
+.reveal-active {
+    animation: reveal 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes reveal {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1) rotate(0);
+    }
+}
+
+/* Enhanced smooth entrance with depth */
+.smooth-entrance {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.smooth-entrance-item {
+    opacity: 0;
+    transform: translateZ(-20px) translateY(20px);
+}
+
+.smooth-entrance-item.entered {
+    opacity: 1;
+    transform: translateZ(0) translateY(0);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+        transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Only show hamburger on small screens (mobile) */
+@media (max-width: 768px) {
+    #hamburger-button {
+        @apply flex;
+        /* Show on mobile */
+    }
+}
+
+/* Fix desktop menu display */
+@media (min-width: 769px) {
+    #side-menu {
+        @apply hidden !important;
+        /* Force hide side menu on desktop */
+    }
+
+    #overlay {
+        @apply hidden !important;
+        /* Force hide overlay on desktop */
+    }
+}
+
+/* Additional fixes for contact page in light mode */
+.light #contact p,
+.light #contact .text-gray-300,
+.light #contact a.text-gray-300 {
+    color: #4b5563 !important;
+    /* Using gray-700 */
+    font-weight: 500;
+}
+
+.light #contact h1,
+.light #contact h2,
+.light #contact h3:not(.text-prometheus-accent) {
+    color: #1f2937 !important;
+    /* Using gray-800 */
+    font-weight: 600;
+}
+
+/* Ensure form labels are visible in light mode */
+.light #contact label {
+    color: #374151 !important;
+    /* Using gray-700 */
+}
+
+/* Improve form input contrast in light mode */
+.light #contact input,
+.light #contact textarea {
+    color: #1f2937;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(209, 213, 219, 0.5);
+}
+
+/* Ensure proper text color in success message in light mode */
+.light #contact .bg-green-500\/20 h3 {
+    color: #065f46 !important;
+    /* Using green-800 */
+}
+
+.light #contact .bg-green-500\/20 p {
+    color: #047857 !important;
+    /* Using green-700 */
+}
+
+/* Fix social media icons in light mode for contact page */
+.light #contact .flex.justify-center.space-x-6 svg {
+    color: #4b5563 !important;
+    /* Using gray-700 for light mode */
+}
+
+/* Ensure social icons are visible on hover in both light and dark modes */
+.light #contact .group:hover svg {
+    color: var(--color-accent) !important;
+}
+
+/* Make specific text elements white in light mode on contact page */
+.light #contact h1,
+.light #contact .text-center.mb-16 h1 {
+    color: white !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    /* Add shadow for better readability */
+}
+
+.light #contact .text-center.mb-16 p.text-gray-700 {
+    color: white !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    /* Add shadow for better readability */
+}
+
+.light #contact .mt-16.text-center h3 {
+    color: white !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    /* Add shadow for better readability */
+}
+
+/* Ensure "Touch" part maintains the accent color in light mode */
+.light #contact h1 span.text-prometheus-accent {
+    color: var(--color-accent) !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    /* Add shadow for better readability */
+}
