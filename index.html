@@ -40,6 +40,20 @@
       console.log('Running locally');
     }
   </script>
+
+  <!-- Ensure proper loading of Go To Top script -->
+  <script>
+    // This helps with Cloudflare's Rocket Loader
+    if (typeof window.addEventListener === 'function') {
+        window.addEventListener('load', function() {
+            // Check if button exists, if not - try to initialize it
+            if (!document.getElementById('goTopBtn') && typeof initGoToTopButton === 'function') {
+                console.log('Fallback initialization of Go To Top button');
+                initGoToTopButton();
+            }
+        });
+    }
+  </script>
 </body>
 
 </html>

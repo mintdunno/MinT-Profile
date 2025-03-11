@@ -12,29 +12,29 @@ const ProfileSection: React.FC = () => {
     >
       {/* Animated background with shifting colors - VERY OBVIOUS NOW */}
       <div className="absolute inset-0 animated-bg-gradient"></div>
-      
+
       {/* Very obvious animated light beam */}
       <div className="profile-highlight-beam"></div>
-      
+
       {/* Additional animated color orb specific to profile */}
       <div className="profile-color-orb"></div>
-      
+
       {/* Enhanced light mode professional gradient background elements */}
       <div className="absolute inset-0 opacity-0 light:opacity-100 bg-gradient-to-br from-white via-[#f8fafc] to-[#f0f7fa] z-[-2]"></div>
-      
+
       {/* Subtle pattern overlay */}
       <div className="absolute inset-0 opacity-0 light:opacity-10 bg-pattern z-[-1]"></div>
-      
+
       {/* Accent gradient elements */}
       <div className="absolute top-0 -right-16 h-96 w-96 opacity-0 light:opacity-25 bg-gradient-to-bl from-prometheus-accent/20 via-rose-100/20 to-transparent rounded-full blur-2xl z-[-1]"></div>
       <div className="absolute bottom-0 left-0 w-full h-48 opacity-0 light:opacity-30 bg-gradient-to-t from-blue-50 to-transparent z-[-1]"></div>
       <div className="absolute top-1/3 left-0 h-32 w-32 opacity-0 light:opacity-20 bg-gradient-to-r from-prometheus-accent/20 to-transparent rounded-full blur-xl z-[-1]"></div>
-      
+
       {/* Animated color orbs */}
       <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-400/20 dark:bg-blue-400/10 rounded-full animate-float-slow blur-2xl z-[-1]"></div>
       <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-purple-400/20 dark:bg-purple-400/10 rounded-full animate-float-slow-reverse blur-2xl z-[-1]"></div>
       <div className="absolute top-3/4 right-1/3 w-24 h-24 bg-amber-400/20 dark:bg-amber-400/10 rounded-full animate-float-slow2 blur-2xl z-[-1]"></div>
-      
+
       <div className="md:w-1/2 text-center md:text-left mb-12 md:mb-0 md:pr-12">
         <h2 className="text-xl md:text-2xl text-prometheus-light-blue font-medium mb-3">
           {t("job.title")}
@@ -56,7 +56,7 @@ const ProfileSection: React.FC = () => {
           >
             {/* Animated background for button */}
             <span className="absolute inset-0 bg-gradient-to-r from-[#ff7e5f] via-[#feb47b] to-[#ff7e5f] bg-size-200 animate-gradient-x z-0"></span>
-            
+
             {/* Button text */}
             <span className="relative z-10 flex items-center text-white">
               <span className="mr-2">View Resume</span>
@@ -75,10 +75,10 @@ const ProfileSection: React.FC = () => {
                 />
               </svg>
             </span>
-            
+
             {/* Animated shine effect */}
             <span className="absolute inset-0 w-full h-full shine-effect"></span>
-            
+
             {/* Hover glow effect */}
             <span className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-white/10 via-white/5 to-transparent"></span>
           </Link>
@@ -117,17 +117,22 @@ const ProfileSection: React.FC = () => {
           <div className="relative w-full h-full profile-image-container group cursor-pointer">
             {/* Animated background glow */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-prometheus-accent/30 to-prometheus-light-blue/30 blur-xl transform scale-105 group-hover:scale-125 transition-all duration-700 opacity-60 group-hover:opacity-80 group-hover:animate-pulse-slow"></div>
-            
+
             {/* Outer ring */}
             <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-prometheus-accent via-prometheus-light-blue to-prometheus-accent opacity-0 group-hover:opacity-100 blur-md transition-all duration-700 animate-spin-very-slow"></div>
-            
+
             {/* Multiple particle effects */}
             <div className="particles-container">
               {[...Array(5)].map((_, i) => (
-                <span key={i} className={`particle particle-${i+1} opacity-0 group-hover:opacity-100`}></span>
+                <span
+                  key={i}
+                  className={`particle particle-${
+                    i + 1
+                  } opacity-0 group-hover:opacity-100`}
+                ></span>
               ))}
             </div>
-            
+
             {/* Main profile image */}
             <img
               src="/profile.jpg"
