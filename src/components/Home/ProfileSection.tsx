@@ -94,14 +94,14 @@ const ProfileSection: React.FC = () => {
               label="LinkedIn Profile"
             />
             <SocialLink
-              href="https://youtube.com/"
-              icon="fa-youtube"
-              label="YouTube Channel"
+              href="https://www.facebook.com/profile.php?id=100014132555903"
+              icon="fa-facebook"
+              label="Facebook Profile"
             />
             <SocialLink
-              href="https://twitter.com/"
-              icon="fa-twitter"
-              label="Twitter Profile"
+              href="https://www.facebook.com/profile.php?id=100014132555903"
+              icon="fa-discord"
+              label="Facebook Profile"
             />
           </div>
         </div>
