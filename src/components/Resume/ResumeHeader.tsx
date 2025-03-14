@@ -37,7 +37,7 @@ const ResumeHeader: React.FC = () => {
         </a>
 
         <a
-          href="mailto:your.email@example.com"
+          href="mailto:s3911737@rmit.edu.vn"
           className="inline-flex items-center bg-transparent border-2 border-prometheus-accent text-prometheus-accent hover:bg-prometheus-accent/10 px-6 py-3 rounded-full font-medium transition-all duration-300"
         >
           Contact Me
